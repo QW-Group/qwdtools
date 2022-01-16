@@ -1,0 +1,12 @@
+*.o
+
+Makefile
+qwdtools
+config.log
+config.status
+
+#virtualenv
+.venv/
+
+# build output dirs
+build*/
