@@ -61,20 +61,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif
 
 
-#define QW_VERSION          "2.40"
-#define SERVER_VERSION      "0.35-dev"
-#define VERSION_NUM         0.34
+#define QWDTOOLS_NAME       "QWDtools"
 #define VERSION_NUM_STR     "0.34"
 #define SERVER_NAME         "MVDSV"
-#define SERVER_FULLNAME     "MVDSV: MultiView Demo SerVer"
-#define SERVER_HOME_URL     "https://github.com/deurk/mvdsv"
+#define SERVER_HOME_URL     "https://github.com/QW-Group/qwdtool"
 #define BUILD_DATE          __DATE__ ", " __TIME__
 #define GIT_COMMIT          ""
-
-
-#define QWDTOOLS_NAME       "QWDtools"
 
 char *VersionStringFull (void);
 
 #endif /* !__VERSION_H__ */
-
