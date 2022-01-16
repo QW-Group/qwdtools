@@ -662,7 +662,7 @@ void ReadPackets (void)
 
 }
 
-__inline void SetWorldTime()
+void SetWorldTime()
 {
 	static float lasttime = 0;
 
@@ -676,7 +676,7 @@ __inline void SetWorldTime()
 
 }
 
-__inline void GetDemoTimes(double *mintime, double *nearest)
+void GetDemoTimes(double *mintime, double *nearest)
 {
 	int i;
 	double t;
