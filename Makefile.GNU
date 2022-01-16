@@ -8,9 +8,7 @@
 #	$Id$
 #
 
-MAINDIR = ../../..
-SV_DIR = $(MAINDIR)/source
-QWDTOOLS_DIR = $(MAINDIR)/tools/qwdtools/source
+QWDTOOLS_DIR = src
 
 # to compile qwdtools as 32bit on 64bit target platform use next:
 # for gcc its like: make qwdtools FORCE32BITFLAGS=-m32
@@ -59,7 +57,7 @@ endif
 #############################################################################
 
 QWDTOOLS_OBJS = \
-		$(SV_DIR)/bothtools.o \
+		$(QWDTOOLS_DIR)/bothtools.o \
 		$(QWDTOOLS_DIR)/dem_parse.o \
 		$(QWDTOOLS_DIR)/dem_send.o \
 		$(QWDTOOLS_DIR)/ini.o \
@@ -72,7 +70,7 @@ QWDTOOLS_OBJS = \
 
 ifeq ($(USE_ASM),$(ASM))
 QWDTOOLS_ASM_OBJS = \
-		$(SV_DIR)/bothtoolsa.o
+		$(QWDTOOLS_DIR)/bothtoolsa.o
 endif
 
 #############################################################################
