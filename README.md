@@ -12,7 +12,7 @@ The following architectures are fully supported by **[QWDTOOLS][qwdtools]** and 
 * Windows x86 (Intel and AMD 32-bit processors)
 
 ## Prebuilt binaries
-You can find the prebuilt binaries on [this download page][qwdtools_builds].
+You can find the prebuilt binaries on [this download page][qwdtools-builds].
 
 ## Prerequisites
 
@@ -47,12 +47,6 @@ V=1 B=Debug ./build_cmake.sh linux-amd64
 should build QWDTOOLS for linux-amd64 platform with debug, verbose (useful if you need validate compiler flags)
 
 ```
-V=1 B=Debug BOT_SUPPORT=OFF ./build_cmake.sh linux-amd64
-```
-
-same as above but compile without bot support
-
-```
 G="Unix Makefiles" ./build_cmake.sh linux-amd64
 ```
 
@@ -83,5 +77,5 @@ This project is licensed under the GPL-2.0 License - see the [LICENSE.md](LICENS
 
 [qwdtools]: https://github.com/QW-Group/qwdtools
 [qwdtools-tags]: https://github.com/QW-Group/qwdtools/tags
-[qwdtools_builds]: https://builds.quakeworld.nu/qwdtools
+[qwdtools-builds]: https://builds.quakeworld.nu/qwdtools
 [discord-qw]: http://discord.quake.world/
