@@ -1300,6 +1300,10 @@ void Dem_ParseBaseline (entity_state_t *es)
 {
 	int			i;
 
+	// WARNING: that memset() implies that code does not set any fields prior!!!
+	// It is required since we compare structs with memcmp() in Dem_ParseDemoMessage().
+	memset(es, 0, sizeof(*es));
+
 	es->modelindex = MSG_ReadByte ();
 	es->frame = MSG_ReadByte ();
 	es->colormap = MSG_ReadByte();
@@ -1520,14 +1524,23 @@ void Dem_ParseDemoMessage (void)
 			break;
 
 		case svc_spawnbaseline:
+		{
+			entity_state_t blank_state = {0}; // All fields are set to zero.
 			msg_startcount = msg_readcount;
 			i = MSG_ReadShort ();
-			Dem_ParseBaseline (&baselines[i]);
-
-			MVDWrite_Begin(dem_all, 0, msg_readcount - msg_startcount + 1);
-			MSG_WriteByte(msgbuf, cmd);
-			MSG_Forward(msgbuf, msg_startcount, msg_readcount - msg_startcount);
+			Dem_ParseBaseline (&baselines[i]); // baselines[i] fields would be set to zero and initialised from the packet.
+			// Add entity to mvd only if baselines[i] have any non zero fields.
+			// That required since ezquake produce bugged demos whith 2048 baselines which cause
+			// overflow in source_t.buffer[15*MAX_MSGLEN] and demo_t.buffer[15*MAX_MSGLEN].
+			// We could, probably, just bump 15*MAX_MSGLEN to something like 32*MAX_MSGLEN and it should be fine.
+			if (memcmp(&blank_state, &baselines[i], sizeof(blank_state)))
+			{
+				MVDWrite_Begin(dem_all, 0, msg_readcount - msg_startcount + 1);
+				MSG_WriteByte(msgbuf, cmd);
+				MSG_Forward(msgbuf, msg_startcount, msg_readcount - msg_startcount);
+			}
 			break;
+		}
 		case svc_spawnstatic:
 			MVDWrite_Begin(dem_all, 0, 14);
 			MSG_WriteByte(msgbuf, cmd);
