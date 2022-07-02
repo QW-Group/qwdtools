@@ -153,6 +153,7 @@ typedef struct
 	int			playernum;
 	int			prevnum[MAX_CLIENTS];
 	int			validsequence;
+	int			delta_sequence;
 	qbool		spectator;
 	int			framecount;
 	float		latency;

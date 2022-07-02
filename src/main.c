@@ -448,6 +448,7 @@ nextdemomessage:
 		pcmd->upmove      = LittleShort(pcmd->upmove);
 		from->frames[i].senttime = demotime;
 		from->frames[i].receivedtime = -1;		// we haven't gotten a reply yet
+		from->frames[i].delta_sequence = from->delta_sequence;
 		from->netchan.outgoing_sequence++;
 		from->frames[i].playerstate[from->playernum].command = *pcmd;
 		for (j=0 ; j<3 ; j++)
