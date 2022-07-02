@@ -790,6 +790,7 @@ void FlushEntityPacket (void)
 	memset (&olde, 0, sizeof(olde));
 
 	//world.validsequence = 0;		// can't render a frame
+	from->delta_sequence = 0;
 	from->frames[from->netchan.incoming_sequence&UPDATE_MASK].invalid = true;
 
 	// read it all, but ignore it
@@ -857,7 +858,7 @@ void Dem_ParsePacketEntities (qbool delta)
 			}
 		}
 
-		from->validsequence = from->netchan.incoming_sequence;
+		from->delta_sequence = from->validsequence = from->netchan.incoming_sequence;
 		oldp = &from->frames[oldpacket&UPDATE_MASK].packet_entities;
 		full = false;
 	}
@@ -865,7 +866,7 @@ void Dem_ParsePacketEntities (qbool delta)
 	{	// this is a full update that we can start delta compressing from now
 		oldp = &dummy;
 		dummy.num_entities = 0;
-		from->validsequence = from->netchan.incoming_sequence;
+		from->delta_sequence = from->validsequence = from->netchan.incoming_sequence;
 		full = true;
 	}
 
@@ -982,6 +983,7 @@ void Dem_ParsePacketEntities (qbool delta)
 		{	// delta from previous
 			if (full)
 			{
+				from->delta_sequence = 0;
 				//world.validsequence = 0;
 				//Con_Printf ("WARNING: delta on full update");
 			}
