@@ -106,7 +106,7 @@ qbool OpenQWZ (char *files)
 			snprintf(curdir, sizeof(curdir), "%s/%s", currentDir, qizmoDir);
 	}
 
-	strlcpy (cmdline, va("%s/" QIZMO_BIN "-D %s", curdir,
+	strlcpy (cmdline, va("%s/" QIZMO_BIN " -D %s", curdir,
 	                     files), sizeof(cmdline));
 
 #ifdef _WIN32
